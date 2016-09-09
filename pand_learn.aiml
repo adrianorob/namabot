@@ -1,0 +1,43 @@
+<aiml version="2.0">
+
+<category><pattern>OI</pattern><template>Olá, como você se chama?</template></category>
+<category><pattern>OLÁ</pattern><template>Olá, como você se chama?</template></category>
+<category><pattern>OLA</pattern><template>Olá, como você se chama?</template></category>
+<category><pattern>ALGUEM ^ AI</pattern><template>Olá, como você se chama?</template></category>
+<category>
+    <pattern>*</pattern><that>OLÁ, COMO VOCÊ SE CHAMA</that>
+    <template>Fala aí <set name="name"><star/></set>, como posso te ajudar?</template>
+</category>
+<category>
+    <pattern>MEU NOME É ^</pattern>
+    <template>Fala aí <set name="name"><star/></set>, como posso te ajudar?</template>
+</category>
+
+<category>
+    <pattern>COMO É # MEU NOME</pattern>
+    <template>
+        <random>
+            <li><get name="name"/>!</li>  
+            <li>Tá esquecido hein <get name="name"/>.</li>  
+            <li>Seu nome é <get name="name"/>.</li>  
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>CONTE DE * ATÉ <set>number</set></pattern>
+    <template>PREDECESSOR<think><set name="count"><star index="1"/></set></think>
+        <condition name="count">
+            <li>
+                <value><star index="2"/></value>
+            </li>
+            <li>
+                <set name="count">
+                    <map><name>successor</name><get name="count"/></map>
+                </set>
+                <loop/>
+            </li>
+        </condition>
+    </template>
+</category>
+</aiml>
